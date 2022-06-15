@@ -17,7 +17,7 @@ setInterval(function () {
           const id = element.url.substring(element.url.lastIndexOf("#") + 1);
           result[pageUrl] = result[pageUrl] || { annotations: [], title: element.pageTitle }
           result[pageUrl].annotations.push({
-            body: element.body,
+            body: element.body.replace(/\n\n/g, "\nㅤ\n") + "\nㅤ\n",
             comment: element.comment,
             position: element.selector.descriptor.content[1].start,
             pdageUrl: element.url,
