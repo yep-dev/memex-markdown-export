@@ -15,12 +15,12 @@ setInterval(function () {
         const groupedData = query.result.reduce((result, element) => {
           const pageUrl = element.pageUrl
           const id = element.url.substring(element.url.lastIndexOf("#") + 1);
-          result[pageUrl] = result[pageUrl] || { annotations: [], title: element.pageTitle }
+          result[pageUrl] = result[pageUrl] || { annotations: [], title: element.pageTitle, date: new Date(0) }
+          result[pageUrl].date = new Date(result[pageUrl].date).getTime() > element.lastEdited.getTime() ? result[pageUrl].date : element.lastEdited.toISOString().split('T')[0]
           result[pageUrl].annotations.push({
             body: element.body.replace(/\n\n/g, "\nㅤ\n") + "\nㅤ\n",
             comment: element.comment,
             position: element.selector.descriptor.content[1].start,
-            pdageUrl: element.url,
             url: `https://${element.url}`,
             id,
           })
