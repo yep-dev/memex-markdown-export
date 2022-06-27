@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 from fastapi import FastAPI
 from starlette.requests import Request
@@ -18,4 +19,11 @@ async def load(request: Request):
         value['annotations'].sort(key=lambda x: x['position'])
         with open(f"{output_folder}/{value['title']}.md", "w") as f:
             f.write(template.render(**value, url=key, slug=slugify(value['title'])))
+    return {}
+
+
+@app.post("/log_deleted")
+async def load(urls: List[str]):
+    with open("deleted_log.txt", "a") as f:
+        f.write('\n'.join(urls))
     return {}
