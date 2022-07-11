@@ -2,6 +2,8 @@
 title: "{{title}}"
 date: {{date}}
 slug: "/{{slug}}"
+tags:{% for tag in tags %}
+  - {{tag}}{% endfor %}
 ---
 # {{title}}
 
