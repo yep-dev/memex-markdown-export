@@ -21,9 +21,3 @@ async def load(request: Request):
             f.write(template.render(**value, url=key, slug=slugify(value['title'])))
     return {}
 
-
-@app.post("/log_deleted")
-async def load(urls: List[str]):
-    with open("deleted_log.txt", "a") as f:
-        f.write('\n'.join(urls))
-    return {}

@@ -51,7 +51,7 @@ const run = function () {
         }, {})
 
 
-        fetch('http://localhost:8000/load', {
+        fetch('http://10.0.0.100:8000/load', {
           method: 'POST', headers: {
             'Accept': 'application/json', 'Content-Type': 'application/json'
           }, body: JSON.stringify(groupedData)

@@ -1,7 +1,7 @@
 ---
-title: "{{title}}"
+title: '{{title}}'
 date: {{date}}
-slug: "/{{slug}}"
+slug: '/{{slug}}'
 tags:{% for tag in tags %}
   - {{tag}}{% endfor %}
 ---
