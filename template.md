@@ -1,5 +1,5 @@
 ---
-title: '{{title}}'
+title: '{{excaped_title}}'
 date: {{date}}
 slug: '/{{slug}}'
 tags:{% for tag in tags %}

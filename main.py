@@ -16,8 +16,13 @@ output_folder = f'{os.path.expanduser("~")}/Drive/sync/obsidian/Memex'
 async def load(request: Request):
     json = await request.json()
     for key, value in json.items():
+        title = value['title']
         value['annotations'].sort(key=lambda x: x['position'])
-        with open(f"{output_folder}/{value['title']}.md", "w") as f:
-            f.write(template.render(**value, url=key, slug=slugify(value['title'])))
+        with open(f"{output_folder}/{title}.md", "w") as f:
+            f.write(template.render(
+                **value,
+                excaped_title=title.replace("'", "''"),
+                url=key,
+                slug=slugify(title)
+            ))
     return {}
-
