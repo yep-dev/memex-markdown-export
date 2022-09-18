@@ -38,7 +38,9 @@ const run = function () {
             date: new Date(0),
             tags: spaceItems[pageUrl]
           }
+          // last annotation date
           result[pageUrl].date = new Date(result[pageUrl].date).getTime() > element.lastEdited.getTime() ? result[pageUrl].date : element.lastEdited.toISOString().split('T')[0]
+          
           result[pageUrl].annotations.push({
             body: element.body.replace(/\n\n/g, "\nㅤ\n") + "\nㅤ\n",
             comment: element.comment,
