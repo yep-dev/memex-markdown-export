@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from starlette.requests import Request
 from jinja2 import Environment, FileSystemLoader
 from slugify import slugify
+import config
 import pathlib
 
 app = FastAPI()
@@ -34,6 +35,10 @@ async def load(request: Request):
     articles = await request.json()
     for key, article in articles.items():
         title = article['title']
+        for suffix in config.suffixes:
+            if title.endswith(suffix):
+                title = title.replace(suffix, "")
+        title = title.strip()
         titles.append(title)
 
         series = reversed_series.get(key, '')
